@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import ColorModeSwitch from "./components/ColorModeSwitch";
 import { useState } from "react";
 import GameGrid from "./components/GameGrid";
+import GenreList from "./components/GenreList";
 
 function App() {
   const saved = localStorage.getItem("colorMode");
@@ -41,7 +42,7 @@ function App() {
             </HStack>
           </GridItem>
           <GridItem area="aside" display={{ base: "none", lg: "block" }}>
-            Aside
+            <GenreList />
           </GridItem>
           <GridItem area="main">
             <GameGrid />
