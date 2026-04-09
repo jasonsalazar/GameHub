@@ -2,12 +2,17 @@ import { Icon, Switch } from "@chakra-ui/react";
 import { FaMoon, FaSun } from "react-icons/fa";
 
 interface Props {
+  colorMode: string;
   toggleColorMode: () => void;
 }
 
-const ColorModeSwitch = ({ toggleColorMode }: Props) => {
+const ColorModeSwitch = ({ colorMode, toggleColorMode }: Props) => {
   return (
-    <Switch.Root size="lg" onCheckedChange={toggleColorMode}>
+    <Switch.Root
+      size="lg"
+      checked={colorMode === "dark"}
+      onCheckedChange={toggleColorMode}
+    >
       <Switch.HiddenInput />
       <Switch.Control>
         <Switch.Thumb />

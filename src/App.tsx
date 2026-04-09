@@ -11,9 +11,15 @@ import { useState } from "react";
 import GameGrid from "./components/GameGrid";
 
 function App() {
-  const [colorMode, setColorMode] = useState<ThemeProps["appearance"]>("light");
+  const saved = localStorage.getItem("colorMode");
+  const [colorMode, setColorMode] = useState<ThemeProps["appearance"]>(
+    saved ? JSON.parse(saved) : "light",
+  );
+
   const changeMode = () => {
-    setColorMode(colorMode === "light" ? "dark" : "light");
+    const theme = colorMode === "light" ? "dark" : "light";
+    setColorMode(theme);
+    localStorage.setItem("colorMode", JSON.stringify(theme));
   };
 
   return (
@@ -28,7 +34,10 @@ function App() {
           <GridItem area="nav">
             <HStack justifyContent="space-between" p={2}>
               <NavBar />
-              <ColorModeSwitch toggleColorMode={changeMode} />
+              <ColorModeSwitch
+                colorMode={colorMode!}
+                toggleColorMode={changeMode}
+              />
             </HStack>
           </GridItem>
           <GridItem area="aside" display={{ base: "none", lg: "block" }}>
