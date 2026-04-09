@@ -8,6 +8,7 @@ import {
 import NavBar from "./components/NavBar";
 import ColorModeSwitch from "./components/ColorModeSwitch";
 import { useState } from "react";
+import GameGrid from "./components/GameGrid";
 
 function App() {
   const [colorMode, setColorMode] = useState<ThemeProps["appearance"]>("light");
@@ -33,7 +34,9 @@ function App() {
           <GridItem area="aside" display={{ base: "none", lg: "block" }}>
             Aside
           </GridItem>
-          <GridItem area="main">Main</GridItem>
+          <GridItem area="main">
+            <GameGrid />
+          </GridItem>
         </Grid>
       </Theme>
     </>
