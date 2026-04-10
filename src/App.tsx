@@ -31,6 +31,10 @@ function App() {
             base: `"nav" "main"`,
             lg: `"nav nav" "aside main"`,
           }}
+          templateColumns={{
+            base: "1fr",
+            lg: "200px 1fr",
+          }}
         >
           <GridItem area="nav">
             <HStack justifyContent="space-between" p={2}>
@@ -41,7 +45,11 @@ function App() {
               />
             </HStack>
           </GridItem>
-          <GridItem area="aside" display={{ base: "none", lg: "block" }}>
+          <GridItem
+            area="aside"
+            display={{ base: "none", lg: "block" }}
+            paddingX={5}
+          >
             <GenreList />
           </GridItem>
           <GridItem area="main">
