@@ -1,12 +1,14 @@
 import { HStack, Image, Link, List, Spinner } from "@chakra-ui/react";
 import useGenres, { type Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
+import { FaCheckSquare } from "react-icons/fa";
 
 interface Props {
+  selectedGenre: Genre | null;
   onSelectGenre: (genre: Genre) => void;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
 
   if (isLoading) return <Spinner size="lg" />;
@@ -25,11 +27,13 @@ const GenreList = ({ onSelectGenre }: Props) => {
               alt={genre.name}
             />
             <Link
+              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
               fontSize="lg"
               variant="plain"
               onClick={() => onSelectGenre(genre)}
             >
               {genre.name}
+              {genre.id === selectedGenre?.id && <FaCheckSquare />}
             </Link>
           </HStack>
         </List.Item>
