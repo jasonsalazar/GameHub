@@ -11,6 +11,7 @@ import { useState } from "react";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import type { Genre } from "./hooks/useGenres";
+import PlatformSelector from "./components/PlatformSelector";
 
 function App() {
   const saved = localStorage.getItem("colorMode");
@@ -59,6 +60,7 @@ function App() {
             />
           </GridItem>
           <GridItem area="main">
+            <PlatformSelector />
             <GameGrid selectedGenre={selectedGenre} />
           </GridItem>
         </Grid>
