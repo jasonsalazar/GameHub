@@ -10,6 +10,7 @@ import ColorModeSwitch from "./components/ColorModeSwitch";
 import { useState } from "react";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import type { Genre } from "./hooks/useGenres";
 
 function App() {
   const saved = localStorage.getItem("colorMode");
@@ -22,6 +23,8 @@ function App() {
     setColorMode(theme);
     localStorage.setItem("colorMode", JSON.stringify(theme));
   };
+
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
   return (
     <>
@@ -50,10 +53,10 @@ function App() {
             display={{ base: "none", lg: "block" }}
             paddingX={5}
           >
-            <GenreList />
+            <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
           </GridItem>
           <GridItem area="main">
-            <GameGrid />
+            <GameGrid selectedGenre={selectedGenre} />
           </GridItem>
         </Grid>
       </Theme>
