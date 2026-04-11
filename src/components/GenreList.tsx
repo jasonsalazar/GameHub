@@ -1,4 +1,4 @@
-import { HStack, Image, Link, List, Spinner } from "@chakra-ui/react";
+import { Heading, HStack, Image, Link, List, Spinner } from "@chakra-ui/react";
 import useGenres, { type Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 import { FaCheckSquare } from "react-icons/fa";
@@ -16,29 +16,35 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   if (error) console.log(error);
 
   return (
-    <List.Root unstyled>
-      {data.map((genre) => (
-        <List.Item key={genre.id} paddingY="5px">
-          <HStack>
-            <Image
-              boxSize="32px"
-              borderRadius={8}
-              src={getCroppedImageUrl(genre.image_background)}
-              alt={genre.name}
-            />
-            <Link
-              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
-              fontSize="lg"
-              variant="plain"
-              onClick={() => onSelectGenre(genre)}
-            >
-              {genre.name}
-              {genre.id === selectedGenre?.id && <FaCheckSquare />}
-            </Link>
-          </HStack>
-        </List.Item>
-      ))}
-    </List.Root>
+    <>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Genres
+      </Heading>
+      <List.Root unstyled>
+        {data.map((genre) => (
+          <List.Item key={genre.id} paddingY="5px">
+            <HStack>
+              <Image
+                boxSize="32px"
+                borderRadius={8}
+                objectFit="cover"
+                src={getCroppedImageUrl(genre.image_background)}
+                alt={genre.name}
+              />
+              <Link
+                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+                fontSize="lg"
+                variant="plain"
+                onClick={() => onSelectGenre(genre)}
+              >
+                {genre.name}
+                {genre.id === selectedGenre?.id && <FaCheckSquare />}
+              </Link>
+            </HStack>
+          </List.Item>
+        ))}
+      </List.Root>
+    </>
   );
 };
 export default GenreList;
