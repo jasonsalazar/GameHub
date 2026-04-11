@@ -14,6 +14,7 @@ import type { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import type { Platform } from "./hooks/useGames";
 import SortSelector from "./components/SortSelector";
+import SearchInput from "./components/SearchInput";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -48,9 +49,10 @@ function App() {
             lg: "200px 1fr",
           }}
         >
-          <GridItem area="nav">
-            <HStack justifyContent="space-between" p={2}>
+          <GridItem area="nav" position="sticky" top={0} zIndex={1} bg="bg">
+            <HStack p={2}>
               <NavBar />
+              <SearchInput />
               <ColorModeSwitch
                 colorMode={colorMode!}
                 toggleColorMode={changeMode}
