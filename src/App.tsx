@@ -20,6 +20,7 @@ export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string;
+  searchText: string;
 }
 
 function App() {
@@ -52,7 +53,11 @@ function App() {
           <GridItem area="nav" position="sticky" top={0} zIndex={1} bg="bg">
             <HStack p={2}>
               <NavBar />
-              <SearchInput />
+              <SearchInput
+                onSearch={(searchText) =>
+                  setGameQuery({ ...gameQuery, searchText })
+                }
+              />
               <ColorModeSwitch
                 colorMode={colorMode!}
                 toggleColorMode={changeMode}
