@@ -1,4 +1,4 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { SimpleGrid, Text, useBreakpointValue } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
@@ -11,12 +11,13 @@ interface Props {
 
 const GameGrid = ({ gameQuery }: Props) => {
   const { data, error, isLoading } = useGames(gameQuery);
-  const skeletons = [...Array(8).keys()]; //Array.from({ length: 15 }, (_, i) => i + 1)
+  const screenSize = useBreakpointValue({ sm: 1, md: 2, lg: 3, xl: 4 });
+  const skeletons = [...Array(screenSize ? screenSize * 2 : 4).keys()]; //Array.from({ length: 15 }, (_, i) => i + 1)
 
   if (error) return <Text>{error}</Text>;
 
   return (
-    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} padding="10px" gap={6}>
+    <SimpleGrid columns={screenSize} padding="10px" gap={6}>
       {isLoading &&
         skeletons.map((skeleton) => (
           <GameCardContainer key={skeleton}>
