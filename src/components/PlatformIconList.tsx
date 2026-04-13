@@ -12,6 +12,7 @@ import {
 import { MdPhoneIphone } from "react-icons/md";
 import { BsNintendoSwitch } from "react-icons/bs";
 import type { IconType } from "react-icons";
+import { CgUnavailable } from "react-icons/cg";
 
 interface Props {
   platforms: Platform[];
@@ -32,9 +33,17 @@ const PlatformIconList = ({ platforms }: Props) => {
 
   return (
     <HStack marginY={1}>
-      {platforms.map((platform) => (
-        <Icon key={platform.id} as={iconMap[platform.slug]} color="gray.500" />
-      ))}
+      {platforms.map((platform) =>
+        iconMap[platform.slug] !== undefined ? (
+          <Icon
+            key={platform.id}
+            as={iconMap[platform.slug]}
+            color="gray.500"
+          />
+        ) : (
+          <Icon key={platform.id} as={CgUnavailable} color="gray.500"></Icon>
+        ),
+      )}
     </HStack>
   );
 };
