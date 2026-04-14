@@ -14,7 +14,7 @@ const GameGrid = ({ gameQuery }: Props) => {
   const screenSize = useBreakpointValue({ sm: 1, md: 2, lg: 3, xl: 4 });
   const skeletons = [...Array(screenSize ? screenSize * 2 : 4).keys()]; //Array.from({ length: 15 }, (_, i) => i + 1)
 
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
 
   return (
     <SimpleGrid columns={screenSize} padding="10px" gap={6}>
@@ -25,9 +25,9 @@ const GameGrid = ({ gameQuery }: Props) => {
           </GameCardContainer>
         ))}
 
-      {!data.length && !isLoading && <Text>No games found.</Text>}
+      {!data?.results.length && !isLoading && <Text>No games found.</Text>}
 
-      {data.map((game) => (
+      {data?.results.map((game) => (
         <GameCardContainer key={game.id}>
           <GameCard game={game} />
         </GameCardContainer>
