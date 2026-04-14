@@ -13,10 +13,10 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import type { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
-import type { Platform } from "./hooks/useGames";
 import SortSelector from "./components/SortSelector";
 import SearchInput from "./components/SearchInput";
 import GameHeading from "./components/GameHeading";
+import type { Platform } from "./hooks/usePlatforms";
 
 export interface GameQuery {
   genre: Genre | null;
