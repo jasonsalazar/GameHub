@@ -4,11 +4,11 @@ import getCroppedImageUrl from "../services/image-url";
 import { FaCheckSquare } from "react-icons/fa";
 
 interface Props {
-  selectedGenre: Genre | null;
+  selectedGenreId?: number;
   onSelectGenre: (genre: Genre) => void;
 }
 
-const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenreId, onSelectGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
 
   if (isLoading) return <Spinner size="lg" />;
@@ -32,13 +32,13 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
                 alt={genre.name}
               />
               <Link
-                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+                fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
                 fontSize="lg"
                 variant="plain"
                 onClick={() => onSelectGenre(genre)}
               >
                 {genre.name}
-                {genre.id === selectedGenre?.id && <FaCheckSquare />}
+                {genre.id === selectedGenreId && <FaCheckSquare />}
               </Link>
             </HStack>
           </List.Item>
