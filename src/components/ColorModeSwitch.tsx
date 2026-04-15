@@ -1,10 +1,10 @@
 import { Icon, Switch } from "@chakra-ui/react";
-import { useContext, useEffect } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
-import ThemeContext from "../themeContext";
+import useThemeStore from "../themeStore";
+import { useEffect } from "react";
 
 const ColorModeSwitch = () => {
-  const { isDarkMode, dispatch } = useContext(ThemeContext);
+  const { isDarkMode, toggleDarkMode } = useThemeStore();
 
   useEffect(() => {
     localStorage.setItem("dark-mode", isDarkMode.toString());
@@ -14,7 +14,7 @@ const ColorModeSwitch = () => {
     <Switch.Root
       size="lg"
       checked={isDarkMode}
-      onCheckedChange={() => dispatch({ type: "ToggleDarkMode" })}
+      onCheckedChange={() => toggleDarkMode()}
     >
       <Switch.HiddenInput />
       <Switch.Control>
@@ -26,4 +26,5 @@ const ColorModeSwitch = () => {
     </Switch.Root>
   );
 };
+
 export default ColorModeSwitch;
