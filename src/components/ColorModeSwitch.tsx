@@ -1,6 +1,6 @@
 import { Icon, Switch } from "@chakra-ui/react";
 import { FaMoon, FaSun } from "react-icons/fa";
-import useThemeStore from "../themeStore";
+import useThemeStore from "../hooks/useThemeStore";
 import { useEffect } from "react";
 
 const ColorModeSwitch = () => {
