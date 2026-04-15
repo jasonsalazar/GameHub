@@ -12,7 +12,7 @@ import { MdPhoneIphone } from "react-icons/md";
 import { BsNintendoSwitch } from "react-icons/bs";
 import type { IconType } from "react-icons";
 import { CgUnavailable } from "react-icons/cg";
-import type { Platform } from "../hooks/usePlatforms";
+import type { Platform } from "../entities/Platform";
 
 interface Props {
   platforms: Platform[];
