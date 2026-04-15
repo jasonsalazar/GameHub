@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import { Theme } from "@chakra-ui/react";
+import { Box, Theme } from "@chakra-ui/react";
 import useThemeStore from "../hooks/useThemeStore";
 import type { ReactNode } from "react";
 
@@ -15,7 +15,7 @@ const Layout = ({ children }: Props) => {
   return (
     <Theme appearance={theme} minH="100vh">
       <NavBar />
-      {children ?? <Outlet />}
+      <Box padding={3}>{children ?? <Outlet />}</Box>
     </Theme>
   );
 };
