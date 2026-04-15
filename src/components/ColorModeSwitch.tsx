@@ -1,17 +1,20 @@
 import { Icon, Switch } from "@chakra-ui/react";
+import { useContext, useEffect } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
+import ThemeContext from "../themeContext";
 
-interface Props {
-  colorMode: string;
-  toggleColorMode: () => void;
-}
+const ColorModeSwitch = () => {
+  const { isDarkMode, dispatch } = useContext(ThemeContext);
 
-const ColorModeSwitch = ({ colorMode, toggleColorMode }: Props) => {
+  useEffect(() => {
+    localStorage.setItem("dark-mode", isDarkMode.toString());
+  }, [isDarkMode]);
+
   return (
     <Switch.Root
       size="lg"
-      checked={colorMode === "dark"}
-      onCheckedChange={toggleColorMode}
+      checked={isDarkMode}
+      onCheckedChange={() => dispatch({ type: "ToggleDarkMode" })}
     >
       <Switch.HiddenInput />
       <Switch.Control>
