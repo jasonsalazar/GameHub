@@ -10,7 +10,7 @@ const PlatformSelector = () => {
   const selectedPlatformId = useGameQueryStore((s) => s.gameQuery.platformId);
   const selectedPlatform = usePlatform(selectedPlatformId);
 
-  if (error) console.log(error);
+  if (error) throw error;
 
   return (
     <Menu.Root>

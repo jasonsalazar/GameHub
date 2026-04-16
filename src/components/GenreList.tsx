@@ -11,7 +11,7 @@ const GenreList = () => {
 
   if (isLoading) return <Spinner size="lg" />;
 
-  if (error) console.log(error);
+  if (error) throw error;
 
   return (
     <>
